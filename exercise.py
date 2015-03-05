@@ -14,9 +14,6 @@ raw_input("?")
 print "Opening the file ..."
 target = open(file_name, 'w')
 
-print "Truncating the file. Goodbye!"
-target.truncate()
-
 print "Now I'm going to ask you for three lines."
 
 line1 = raw_input("line 1: ")
