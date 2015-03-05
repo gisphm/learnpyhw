@@ -1,33 +1,25 @@
 # -*- coding: utf-8 -*-
 
 from sys import argv
+from os.path import exists
 
 
-script, file_name = argv
+script, from_file, to_file = argv
 
-print "We're going to erase %r." % file_name
-print "If you don't want that, hit CTRL-C (^C)."
-print "If you do want that, hit RETURN."
+print "Copying from %s to %s" % (from_file, to_file)
 
-raw_input("?")
+in_file = open(from_file)
+indata = in_file.read()
 
-print "Opening the file ..."
-target = open(file_name, 'w')
+print "The input file is %d bytes long" % len(indata)
 
-print "Now I'm going to ask you for three lines."
+print "Does the output file exist? %r" % exists(to_file)
+raw_input()
 
-line1 = raw_input("line 1: ")
-line2 = raw_input("line 2: ")
-line3 = raw_input("line 3: ")
+out_file = open(to_file, 'w')
+out_file.write(indata)
 
-print "I'm going to write these to the file."
+print "Alright, all done."
 
-target.write(line1)
-target.write("\n")
-target.write(line2)
-target.write("\n")
-target.write(line3)
-target.write("\n")
-
-print "And finally, we close it."
-target.close()
+out_file.close()
+in_file.close()
